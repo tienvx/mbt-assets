@@ -1,0 +1,19 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Tester as tester << Human >>
+actor Admin as admin << Human >>
+database Database as database
+
+rectangle "MBT Bundle" {
+  admin --> (create user)
+  tester --> (register account)
+  admin --> (view users)
+  (create user) --> database
+  (register account) --> database
+  (view users) --> database
+}
+
+@enduml

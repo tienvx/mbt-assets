@@ -1,0 +1,39 @@
+@startuml
+
+actor Tester as tester << Human >>
+actor Admin as admin << Human >>
+participant "MBT Bundle" as bundle
+database Database as database
+
+admin -> bundle : Create user
+activate bundle
+bundle -> database : Store user
+activate database
+database --> bundle
+deactivate database
+bundle -> database : Get user
+activate database
+database --> bundle : User details
+deactivate database
+bundle --> admin : User details
+deactivate bundle
+
+tester -> bundle : Register account
+activate bundle
+bundle -> database : Create user
+activate database
+database --> bundle
+deactivate database
+bundle --> tester
+deactivate bundle
+
+admin -> bundle : View users
+activate bundle
+bundle -> database : Get users
+activate database
+database --> bundle : User list
+deactivate database
+bundle --> admin : User list
+deactivate bundle
+
+@enduml
