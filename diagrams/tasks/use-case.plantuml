@@ -14,6 +14,7 @@ rectangle "MBT Bundle" {
   tester --> (create bulk replays)
   tester --> (edit task)
   tester --> (view task)
+  tester --> (view tasks)
   ci --> (create bulk tasks by tags)
   ci --> (create bulk all tasks)
   (create task) --> database
@@ -27,7 +28,8 @@ rectangle "MBT Bundle" {
   (create bulk all tasks) --> database
   (create bulk all tasks) --> queue
   (edit task) --> database
-  database --> (view task)
+  (view task) --> database
+  (view tasks) --> database
 }
 
 @enduml

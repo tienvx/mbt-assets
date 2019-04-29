@@ -62,6 +62,15 @@ deactivate database
 bundle --> tester : Task details
 deactivate bundle
 
+tester -> bundle : View tasks
+activate bundle
+bundle -> database : Get tasks
+activate database
+database --> bundle : Task list
+deactivate database
+bundle --> tester : Task list
+deactivate bundle
+
 ci -> bundle : Create bulk all tasks (create bulk tasks by tasks)
 activate bundle
 bundle -> database : Store tasks

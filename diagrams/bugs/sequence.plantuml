@@ -1,0 +1,48 @@
+@startuml
+
+actor Tester as tester << Human >>
+participant "MBT Bundle" as bundle
+database Database as database
+entity Queue as queue
+
+tester -> bundle : Bulk report bugs (bulk reduce bugs)
+activate bundle
+bundle -> queue : Create queue items
+activate queue
+queue --> bundle
+deactivate queue
+bundle --> tester : Number of bugs queued
+deactivate bundle
+
+tester -> bundle : Edit bug
+activate bundle
+bundle -> database : Store bug
+activate database
+database --> bundle
+deactivate database
+bundle -> database : Get bug
+activate database
+database --> bundle : Bug details
+deactivate database
+bundle --> tester : Bug details
+deactivate bundle
+
+tester -> bundle : View bug
+activate bundle
+bundle -> database : Get bug
+activate database
+database --> bundle : Bug details
+deactivate database
+bundle --> tester : Bug details
+deactivate bundle
+
+tester -> bundle : View bugs
+activate bundle
+bundle -> database : Get bugs
+activate database
+database --> bundle : Bug list
+deactivate database
+bundle --> tester : Bug list
+deactivate bundle
+
+@enduml
