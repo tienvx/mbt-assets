@@ -1,0 +1,33 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Tester as tester << Human >>
+actor "Continuous Integration" as ci << Application >>
+database Database as database
+entity Queue as queue
+
+rectangle "MBT Bundle" {
+  tester --> (create task)
+  tester --> (create bulk tasks)
+  tester --> (create bulk replays)
+  tester --> (edit task)
+  tester --> (view task)
+  ci --> (create bulk tasks by tags)
+  ci --> (create bulk all tasks)
+  (create task) --> database
+  (create task) --> queue
+  (create bulk tasks) --> database
+  (create bulk tasks) --> queue
+  (create bulk replays) --> database
+  (create bulk replays) --> queue
+  (create bulk tasks by tags) --> database
+  (create bulk tasks by tags) --> queue
+  (create bulk all tasks) --> database
+  (create bulk all tasks) --> queue
+  (edit task) --> database
+  database --> (view task)
+}
+
+@enduml

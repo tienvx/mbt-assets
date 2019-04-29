@@ -1,0 +1,76 @@
+@startuml
+
+actor Tester as tester << Human >>
+actor "Continuous Integration" as ci << Application >>
+participant "MBT Bundle" as bundle
+database Database as database
+entity Queue as queue
+
+tester -> bundle : Create task
+activate bundle
+bundle -> database : Store task
+activate database
+database --> bundle
+deactivate database
+bundle -> queue : Create queue item
+activate queue
+queue --> bundle
+deactivate queue
+bundle -> database : Get task
+activate database
+database --> bundle : Task details
+deactivate database
+bundle --> tester : Task details
+deactivate bundle
+
+tester -> bundle : Create bulk tasks (create bulk replays)
+activate bundle
+bundle -> database : Store tasks
+activate database
+database --> bundle
+deactivate database
+bundle -> queue : Create queue items
+activate queue
+queue --> bundle
+deactivate queue
+bundle -> database : Get tasks
+activate database
+database --> bundle : Task list
+deactivate database
+bundle --> tester : Task list
+deactivate bundle
+
+tester -> bundle : Edit task
+activate bundle
+bundle -> database : Store task
+activate database
+database --> bundle
+deactivate database
+bundle -> database : Get task
+activate database
+database --> bundle : Task details
+deactivate database
+bundle --> tester : Task details
+deactivate bundle
+
+bundle -> database : View task
+activate database
+database --> bundle : Task details
+deactivate database
+bundle --> tester : Task details
+deactivate bundle
+
+ci -> bundle : Create bulk all tasks (create bulk tasks by tasks)
+activate bundle
+bundle -> database : Store tasks
+activate database
+database --> bundle
+deactivate database
+bundle -> queue : Create queue items
+activate queue
+queue --> bundle
+deactivate queue
+bundle --> ci : Number of tasks created
+deactivate bundle
+
+@enduml
