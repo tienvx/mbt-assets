@@ -1,0 +1,14 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Tester as tester << Human >>
+database Database as database
+
+rectangle "MBT Bundle" {
+  tester --> (view models)
+  (view models) --> database
+}
+
+@enduml

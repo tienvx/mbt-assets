@@ -1,0 +1,16 @@
+@startuml
+
+actor Tester as tester << Human >>
+participant "MBT Bundle" as bundle
+database Database as database
+
+tester -> bundle : View models
+activate bundle
+bundle -> database : Get models
+activate database
+database --> bundle : Model list
+deactivate database
+bundle --> tester : Model list
+deactivate bundle
+
+@enduml
