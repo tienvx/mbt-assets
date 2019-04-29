@@ -53,7 +53,9 @@ deactivate database
 bundle --> tester : Task details
 deactivate bundle
 
-bundle -> database : View task
+tester -> bundle : View task
+activate bundle
+bundle -> database : Get task
 activate database
 database --> bundle : Task details
 deactivate database
