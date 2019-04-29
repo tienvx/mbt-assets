@@ -1,0 +1,9 @@
+@startuml
+
+actor User as user << Human >>
+participant "MBT Bundle" as bundle
+
+user -> bundle : Change theme
+user -> bundle : Change language
+
+@enduml

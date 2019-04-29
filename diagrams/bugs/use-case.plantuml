@@ -3,16 +3,16 @@
 left to right direction
 skinparam packageStyle rectangle
 
-actor Tester as tester << Human >>
+actor User as user << Human >>
 database Database as database
 entity Queue as queue
 
 rectangle "MBT Bundle" {
-  tester --> (bulk report bugs)
-  tester --> (bulk reduce replays)
-  tester --> (edit bug)
-  tester --> (view bug)
-  tester --> (view bugs)
+  user --> (bulk report bugs)
+  user --> (bulk reduce replays)
+  user --> (edit bug)
+  user --> (view bug)
+  user --> (view bugs)
   (bulk report bugs) --> queue
   (bulk reduce replays) --> queue
   (edit bug) --> database

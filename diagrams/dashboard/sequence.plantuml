@@ -1,0 +1,20 @@
+@startuml
+
+actor User as user << Human >>
+participant "MBT Bundle" as bundle
+database Database as database
+
+user -> bundle : View dashboard
+activate bundle
+bundle -> database : Get charts
+activate database
+database --> bundle : Charts
+deactivate database
+bundle -> database : Get numbers
+activate database
+database --> bundle : Numbers
+deactivate database
+bundle --> user : Dashboard
+deactivate bundle
+
+@enduml

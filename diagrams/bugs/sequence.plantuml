@@ -1,20 +1,20 @@
 @startuml
 
-actor Tester as tester << Human >>
+actor User as user << Human >>
 participant "MBT Bundle" as bundle
 database Database as database
 entity Queue as queue
 
-tester -> bundle : Bulk report bugs (bulk reduce bugs)
+user -> bundle : Bulk report bugs (bulk reduce bugs)
 activate bundle
 bundle -> queue : Create queue items
 activate queue
 queue --> bundle
 deactivate queue
-bundle --> tester : Number of bugs queued
+bundle --> user : Number of bugs queued
 deactivate bundle
 
-tester -> bundle : Edit bug
+user -> bundle : Edit bug
 activate bundle
 bundle -> database : Store bug
 activate database
@@ -24,25 +24,25 @@ bundle -> database : Get bug
 activate database
 database --> bundle : Bug details
 deactivate database
-bundle --> tester : Bug details
+bundle --> user : Bug details
 deactivate bundle
 
-tester -> bundle : View bug
+user -> bundle : View bug
 activate bundle
 bundle -> database : Get bug
 activate database
 database --> bundle : Bug details
 deactivate database
-bundle --> tester : Bug details
+bundle --> user : Bug details
 deactivate bundle
 
-tester -> bundle : View bugs
+user -> bundle : View bugs
 activate bundle
 bundle -> database : Get bugs
 activate database
 database --> bundle : Bug list
 deactivate database
-bundle --> tester : Bug list
+bundle --> user : Bug list
 deactivate bundle
 
 @enduml

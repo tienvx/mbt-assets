@@ -7,8 +7,8 @@ actor User as user << Human >>
 database Database as database
 
 rectangle "MBT Bundle" {
-  user --> (view models)
-  (view models) --> database
+  user --> (view dashboard)
+  (view dashboard) --> database
 }
 
 @enduml

@@ -1,12 +1,12 @@
 @startuml
 
-actor Tester as tester << Human >>
+actor User as user << Human >>
 actor "Continuous Integration" as ci << Application >>
 participant "MBT Bundle" as bundle
 database Database as database
 entity Queue as queue
 
-tester -> bundle : Create task
+user -> bundle : Create task
 activate bundle
 bundle -> database : Store task
 activate database
@@ -20,10 +20,10 @@ bundle -> database : Get task
 activate database
 database --> bundle : Task details
 deactivate database
-bundle --> tester : Task details
+bundle --> user : Task details
 deactivate bundle
 
-tester -> bundle : Create bulk tasks (create bulk replays)
+user -> bundle : Create bulk tasks (create bulk replays)
 activate bundle
 bundle -> database : Store tasks
 activate database
@@ -37,10 +37,10 @@ bundle -> database : Get tasks
 activate database
 database --> bundle : Task list
 deactivate database
-bundle --> tester : Task list
+bundle --> user : Task list
 deactivate bundle
 
-tester -> bundle : Edit task
+user -> bundle : Edit task
 activate bundle
 bundle -> database : Store task
 activate database
@@ -50,25 +50,25 @@ bundle -> database : Get task
 activate database
 database --> bundle : Task details
 deactivate database
-bundle --> tester : Task details
+bundle --> user : Task details
 deactivate bundle
 
-tester -> bundle : View task
+user -> bundle : View task
 activate bundle
 bundle -> database : Get task
 activate database
 database --> bundle : Task details
 deactivate database
-bundle --> tester : Task details
+bundle --> user : Task details
 deactivate bundle
 
-tester -> bundle : View tasks
+user -> bundle : View tasks
 activate bundle
 bundle -> database : Get tasks
 activate database
 database --> bundle : Task list
 deactivate database
-bundle --> tester : Task list
+bundle --> user : Task list
 deactivate bundle
 
 ci -> bundle : Create bulk all tasks (create bulk tasks by tasks)

@@ -27,6 +27,15 @@ deactivate database
 bundle --> tester
 deactivate bundle
 
+admin -> bundle : Register account
+activate bundle
+bundle -> database : Create user
+activate database
+database --> bundle
+deactivate database
+bundle --> admin
+deactivate bundle
+
 admin -> bundle : View users
 activate bundle
 bundle -> database : Get users

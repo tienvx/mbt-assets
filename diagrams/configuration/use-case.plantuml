@@ -4,11 +4,10 @@ left to right direction
 skinparam packageStyle rectangle
 
 actor User as user << Human >>
-database Database as database
 
 rectangle "MBT Bundle" {
-  user --> (view models)
-  (view models) --> database
+  user --> (change theme)
+  user --> (change language)
 }
 
 @enduml

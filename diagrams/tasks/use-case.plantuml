@@ -3,18 +3,18 @@
 left to right direction
 skinparam packageStyle rectangle
 
-actor Tester as tester << Human >>
+actor User as user << Human >>
 actor "Continuous Integration" as ci << Application >>
 database Database as database
 entity Queue as queue
 
 rectangle "MBT Bundle" {
-  tester --> (create task)
-  tester --> (create bulk tasks)
-  tester --> (create bulk replays)
-  tester --> (edit task)
-  tester --> (view task)
-  tester --> (view tasks)
+  user --> (create task)
+  user --> (create bulk tasks)
+  user --> (create bulk replays)
+  user --> (edit task)
+  user --> (view task)
+  user --> (view tasks)
   ci --> (create bulk tasks by tags)
   ci --> (create bulk all tasks)
   (create task) --> database

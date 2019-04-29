@@ -8,8 +8,9 @@ actor Admin as admin << Human >>
 database Database as database
 
 rectangle "MBT Bundle" {
-  admin --> (create user)
   tester --> (register account)
+  admin --> (create user)
+  admin --> (register account)
   admin --> (view users)
   (create user) --> database
   (register account) --> database
