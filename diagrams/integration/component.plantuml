@@ -1,0 +1,13 @@
+@startuml
+
+package "MBT Bundle" as bundle {
+    [API] as api
+    [Worker] as worker
+    [Admin] as ui
+}
+CI == api
+api - worker
+worker - ui
+ui == User
+
+@enduml

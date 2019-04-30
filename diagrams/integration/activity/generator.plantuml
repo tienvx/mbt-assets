@@ -1,0 +1,21 @@
+@startuml
+start
+:Task created;
+:Worker execute task;
+
+partition Generator {
+    :Init path;
+    while (Generator has available transitions)
+        :Apply selected transition;
+        :Store step (transition, data, current places) into path;
+        if (Has bug) then (yes)
+            :Create bug with current path;
+            :Complete task;
+            :break;
+        else (no)
+        endif
+    end while
+}
+
+stop
+@enduml

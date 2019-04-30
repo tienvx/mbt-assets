@@ -1,0 +1,10 @@
+@startuml
+
+class "Task" as task << Table >>
+class "Bug" as bug << Table >>
+class "User" as user << Table >>
+
+task "1" --> "0..1" bug
+bug "1" --> "1" task
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+start
+:Bug created;
+:Worker reduce bug;
+
+partition Reducer {
+    :Get path from bug;
+    while (Path can be reduced)
+        :Choose first step in the path;
+        :Choose second step in the path;
+        :Get shortest path between 2 steps;
+        :Create new path = (begin of old path -> first step) + (shortest path between 2 steps) + (second step -> end of old path);
+        if (Can reproduce the bug from the new path) then (yes)
+            :Update bug with current path;
+            :break;
+        else (no)
+        endif
+    end while
+    :Reduced bug;
+}
+
+if (Need report bug) then (yes)
+    :Report bug;
+endif
+
+if (Need capture screenshots) then (yes)
+    :Capture screenshots;
+endif
+
+stop
+@enduml
