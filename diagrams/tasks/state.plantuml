@@ -1,0 +1,26 @@
+@startuml
+
+[*] --> Task
+
+state Task {
+    state "Not Started" as not_started
+    state "In Progress" as in_progress
+    [*] --> not_started
+    not_started --> in_progress: Generating test case
+    in_progress --> Completed: Done generating test case
+    in_progress --> Bug : Found bug
+    Bug --> Completed: Done generating test case
+    Completed --> [*]
+}
+
+state Bug {
+    [*] --> New
+    New --> Reducing : Start reducing
+    Reducing --> Reduced : Finish reducing
+    Reduced --> Reported : Report bug
+    Reduced --> Reducing : Bulk reducing
+    Reported --> Reported : Bulk reporting
+    Reported --> [*]
+}
+
+@enduml
