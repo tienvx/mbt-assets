@@ -1,0 +1,75 @@
+@startuml
+
+actor User as user << Human >>
+actor "Continuous Integration" as ci << Application >>
+
+cloud "System Under Test" as sut
+cloud "Slack" as slack
+cloud "Email" as email
+
+database "Cloud Storage" as storage
+database "Cloud Database" as database
+database "Queue System" as queue
+
+frame "MBT Bundle" as bundle {
+    node API as api {
+        [PHP FPM] as php_api
+        [Nginx] as nginx_api
+    }
+
+    node Worker as worker {
+        [Background Process] as process
+    }
+
+    node Admin as admin {
+        [Nginx] as nginx_admin
+    }
+}
+
+frame "Selenium" as selenium {
+    node Hub as hub {
+        [Selenium Server] as selenium_server_1
+    }
+
+    node "Firefox Node" as firefox {
+        [Selenium Server] as selenium_server_2
+    }
+
+    node "Chrome Node" as chrome {
+        [Selenium Server] as selenium_server_3
+    }
+
+    node "Android Node" as android {
+        [Selenium Server] as selenium_server_4
+    }
+}
+
+api --> storage
+api --> database
+api --> queue
+
+worker --> storage
+worker --> database
+worker --> queue
+
+user --> admin : Use
+ci --> api : Call
+
+worker --> slack : Report
+worker --> email : Report
+
+worker --> hub : Call
+hub --> firefox: Run
+hub --> chrome: Run
+hub --> android: Run
+firefox --> hub: Register
+chrome --> hub: Register
+android --> hub: Register
+
+firefox --> sut : Call
+chrome --> sut : Call
+android --> sut : Call
+
+admin --> api
+
+@enduml
